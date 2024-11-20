@@ -53,6 +53,9 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
+// TESTING ONLY
+import HomePage from "pages/homepage";
+
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
   const {
@@ -146,53 +149,56 @@ export default function App() {
     </MDBox>
   );
 
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName="SGU Volunteer"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-            <Configurator />
-            {configsButton}
-          </>
-        )}
-        {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
-      <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-            brandName="SGU Volunteer"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-          <Configurator />
-          {configsButton}
-        </>
-      )}
-      {layout === "vr" && <Configurator />}
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/users" />} />
-      </Routes>
-    </ThemeProvider>
-  );
+  // TESTING ONLY
+  return <HomePage />;
+
+  // return direction === "rtl" ? (
+  //   <CacheProvider value={rtlCache}>
+  //     <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
+  //       <CssBaseline />
+  //       {layout === "dashboard" && (
+  //         <>
+  //           <Sidenav
+  //             color={sidenavColor}
+  //             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+  //             brandName="SGU Volunteer"
+  //             routes={routes}
+  //             onMouseEnter={handleOnMouseEnter}
+  //             onMouseLeave={handleOnMouseLeave}
+  //           />
+  //           <Configurator />
+  //           {configsButton}
+  //         </>
+  //       )}
+  //       {layout === "vr" && <Configurator />}
+  //       <Routes>
+  //         {getRoutes(routes)}
+  //         <Route path="*" element={<Navigate to="/dashboard" />} />
+  //       </Routes>
+  //     </ThemeProvider>
+  //   </CacheProvider>
+  // ) : (
+  //   <ThemeProvider theme={darkMode ? themeDark : theme}>
+  //     <CssBaseline />
+  //     {layout === "dashboard" && (
+  //       <>
+  //         <Sidenav
+  //           color={sidenavColor}
+  //           brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+  //           brandName="SGU Volunteer"
+  //           routes={routes}
+  //           onMouseEnter={handleOnMouseEnter}
+  //           onMouseLeave={handleOnMouseLeave}
+  //         />
+  //         <Configurator />
+  //         {configsButton}
+  //       </>
+  //     )}
+  //     {layout === "vr" && <Configurator />}
+  //     <Routes>
+  //       {getRoutes(routes)}
+  //       <Route path="*" element={<Navigate to="/users" />} />
+  //     </Routes>
+  //   </ThemeProvider>
+  // );
 }
