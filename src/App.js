@@ -54,7 +54,7 @@ import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
 // TESTING ONLY
-import HomePage from "pages/homepage";
+import HomePage from "pages";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
