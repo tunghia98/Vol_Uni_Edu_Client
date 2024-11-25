@@ -13,6 +13,8 @@ import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 
+import { Link } from "react-router-dom";
+
 export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -39,7 +41,14 @@ export default function MenuAppBar() {
       </FormGroup> */}
       <AppBar position="static">
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu">
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            component={Link}
+            to="/"
+          >
             <img src={SGU} alt="SGU Logo" className="size-14" />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -48,8 +57,8 @@ export default function MenuAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/all-activities"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },

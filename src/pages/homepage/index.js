@@ -21,12 +21,12 @@ export default function HomePage() {
         <img src={SGUBackground_2} alt="Saigon University Background" className="size-2/5" />
 
         <div className="relative px-10">
-          <h2 className="font-extrabold text-7xl text-[#1976d2] mb-10">About Us ___</h2>
+          <h2 className="font-extrabold text-7xl text-sgu-blue mb-10">About Us ___</h2>
           <div className="text-3xl text-gray-500 italic mb-10">
             SGU Volunteers are dedicated to creating positive change through compassion, teamwork,
             and impactful service.
           </div>
-          <button className="bg-[#1976d2] text-white text-3xl px-4 py-5 w-44 transition ease-out hover:brightness-150 rounded-xl">
+          <button className="bg-sgu-blue text-white text-3xl px-4 py-5 w-44 transition ease-out hover:brightness-150 rounded-xl">
             Join us!
           </button>
         </div>
@@ -34,7 +34,7 @@ export default function HomePage() {
 
       {/* OUR PROJECT */}
       <div className="relative flex flex-col justify-center items-center my-10">
-        <h2 className="font-extrabold text-7xl text-[#1976d2] mb-10">Our Project</h2>
+        <h2 className="font-extrabold text-7xl text-sgu-blue mb-10">Our Project</h2>
 
         {/* NEED TO FETCH DATA FOR THIS */}
         <div className="flex flex-row justify-center items-center">

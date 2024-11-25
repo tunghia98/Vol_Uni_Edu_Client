@@ -53,8 +53,12 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
-// TESTING ONLY
-import HomePage from "pages";
+// TESTING
+import HomeLayout from "layouts/home";
+import HomePage from "pages/Homepage";
+import Activities from "pages/Activities";
+import Activity from "pages/Activity";
+import PlaceholderPic from "./assets/images/bg-reset-cover.jpeg";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -149,8 +153,67 @@ export default function App() {
     </MDBox>
   );
 
-  // TESTING ONLY
-  return <HomePage />;
+  // TESTING
+  // Dummy data for activities
+  const activities = [
+    {
+      id: 1,
+      title: "Activity 1",
+      image: PlaceholderPic,
+      targetAmount: 100,
+      currentAmount: 50,
+      status: "Active",
+      startDate: new Date(2024, 0, 1),
+      endDate: new Date(2024, 0, 1),
+      description:
+        "This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1.",
+    },
+    {
+      id: 2,
+      title: "Activity 2",
+      image: PlaceholderPic,
+      targetAmount: 100,
+      currentAmount: 50,
+      status: "Active",
+      startDate: new Date(2024, 0, 1),
+      endDate: new Date(2024, 0, 1),
+      description:
+        "This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1.",
+    },
+    {
+      id: 3,
+      title: "Activity 3",
+      image: PlaceholderPic,
+      targetAmount: 100,
+      currentAmount: 50,
+      status: 100,
+      startDate: new Date(2024, 0, 1),
+      endDate: new Date(2024, 0, 1),
+      description:
+        "This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1. This is a description for Activity 1.",
+    },
+  ];
+
+  return (
+    <Routes>
+      <Route path="/" element={<HomeLayout />}>
+        <Route path="/" element={<HomePage />} />
+
+        {/* PASS PROPS HERE */}
+        <Route path="/all-activities" element={<Activities activities={activities} />} />
+
+        {activities.map((activity) => {
+          return (
+            <Route
+              key={activity.id}
+              path={`/all-activities/${activity.id}`}
+              element={<Activity {...activity} />}
+            />
+          );
+        })}
+      </Route>
+    </Routes>
+  );
 
   // return direction === "rtl" ? (
   //   <CacheProvider value={rtlCache}>
