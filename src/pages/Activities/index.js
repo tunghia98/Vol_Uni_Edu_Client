@@ -33,7 +33,7 @@ export default function Activities({ activities }) {
 
 function ActivityCard({ id, title, image, targetAmount, status }) {
   return (
-    <div className="w-5/12 h-auto border-2 p-3 rounded-md shadow-md m-5">
+    <div className="w-5/12 h-1/3 border-2 p-3 rounded-md shadow-md m-5">
       <img src={image} alt="Activity Image" className="w-full h-3/4" />
       <h2 className="text-2xl font-semibold">{title}</h2>
       <p className="text-xl">Target Amount: {targetAmount}</p>
