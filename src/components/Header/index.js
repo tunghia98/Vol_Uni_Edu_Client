@@ -103,7 +103,9 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>My activities</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/my-activities">
+                  My activities
+                </MenuItem>
                 <MenuItem onClick={handleClose}>Log out</MenuItem>
               </Menu>
             </div>
