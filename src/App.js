@@ -53,12 +53,13 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 
-// TESTING
 import HomeLayout from "layouts/home";
 import HomePage from "pages/Homepage";
 import Activities from "pages/Activities";
 import Activity from "pages/Activity";
-import PlaceholderPic from "./assets/images/bg-reset-cover.jpeg";
+import MyActivities from "pages/MyActivities";
+import MyActivityDetail from "pages/MyActivities/detail";
+import PlaceholderPic from "./assets/images/bg-reset-cover.jpeg"; // TESTING
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -74,6 +75,7 @@ export default function App() {
   } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
+  const [auth, setAuth] = useState("user");
   const { pathname } = useLocation();
 
   // Cache for the rtl
@@ -194,74 +196,91 @@ export default function App() {
     },
   ];
 
-  return (
-    <Routes>
-      <Route path="/" element={<HomeLayout />}>
-        <Route path="/" element={<HomePage />} />
+  const getHomeRoutes = () => {
+    return (
+      <Routes>
+        <Route path="/" element={<HomeLayout />}>
+          <Route path="/" element={<HomePage />} />
 
-        {/* PASS PROPS HERE */}
-        <Route path="/all-activities" element={<Activities activities={activities} />} />
+          {/* PASS PROPS HERE */}
+          <Route path="/all-activities" element={<Activities activities={activities} />} />
 
-        {activities.map((activity) => {
-          return (
-            <Route
-              key={activity.id}
-              path={`/all-activities/${activity.id}`}
-              element={<Activity {...activity} />}
+          {activities.map((activity) => {
+            return (
+              <Route
+                key={activity.id}
+                path={`/all-activities/${activity.id}`}
+                element={<Activity {...activity} />}
+              />
+            );
+          })}
+
+          <Route path="/my-activities" element={<MyActivities activities={activities} />} />
+          {activities.map((activity) => {
+            return (
+              <Route
+                key={activity.id}
+                path={`/my-activities/${activity.id}`}
+                element={<MyActivityDetail {...activity} />}
+              />
+            );
+          })}
+        </Route>
+      </Routes>
+    );
+  };
+
+  if (auth === "user") {
+    return getHomeRoutes();
+  }
+
+  return direction === "rtl" ? (
+    <CacheProvider value={rtlCache}>
+      <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
+        <CssBaseline />
+        {layout === "dashboard" && (
+          <>
+            <Sidenav
+              color={sidenavColor}
+              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+              brandName="SGU Volunteer"
+              routes={routes}
+              onMouseEnter={handleOnMouseEnter}
+              onMouseLeave={handleOnMouseLeave}
             />
-          );
-        })}
-      </Route>
-    </Routes>
+            <Configurator />
+            {configsButton}
+          </>
+        )}
+        {layout === "vr" && <Configurator />}
+        <Routes>
+          {getHomeRoutes()}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      </ThemeProvider>
+    </CacheProvider>
+  ) : (
+    <ThemeProvider theme={darkMode ? themeDark : theme}>
+      <CssBaseline />
+      {layout === "dashboard" && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brandName="SGU Volunteer"
+            routes={routes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+          <Configurator />
+          {configsButton}
+        </>
+      )}
+      {layout === "vr" && <Configurator />}
+      <Routes>
+        {getRoutes(routes)}
+        <Route path="*" element={<Navigate to="/dashboard" />} />
+      </Routes>
+    </ThemeProvider>
   );
-
-  // return direction === "rtl" ? (
-  //   <CacheProvider value={rtlCache}>
-  //     <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-  //       <CssBaseline />
-  //       {layout === "dashboard" && (
-  //         <>
-  //           <Sidenav
-  //             color={sidenavColor}
-  //             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-  //             brandName="SGU Volunteer"
-  //             routes={routes}
-  //             onMouseEnter={handleOnMouseEnter}
-  //             onMouseLeave={handleOnMouseLeave}
-  //           />
-  //           <Configurator />
-  //           {configsButton}
-  //         </>
-  //       )}
-  //       {layout === "vr" && <Configurator />}
-  //       <Routes>
-  //         {getRoutes(routes)}
-  //         <Route path="*" element={<Navigate to="/dashboard" />} />
-  //       </Routes>
-  //     </ThemeProvider>
-  //   </CacheProvider>
-  // ) : (
-  //   <ThemeProvider theme={darkMode ? themeDark : theme}>
-  //     <CssBaseline />
-  //     {layout === "dashboard" && (
-  //       <>
-  //         <Sidenav
-  //           color={sidenavColor}
-  //           brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-  //           brandName="SGU Volunteer"
-  //           routes={routes}
-  //           onMouseEnter={handleOnMouseEnter}
-  //           onMouseLeave={handleOnMouseLeave}
-  //         />
-  //         <Configurator />
-  //         {configsButton}
-  //       </>
-  //     )}
-  //     {layout === "vr" && <Configurator />}
-  //     <Routes>
-  //       {getRoutes(routes)}
-  //       <Route path="*" element={<Navigate to="/users" />} />
-  //     </Routes>
-  //   </ThemeProvider>
-  // );
 }
