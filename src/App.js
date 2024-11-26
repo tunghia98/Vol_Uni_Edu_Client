@@ -59,6 +59,7 @@ import Activities from "pages/Activities";
 import Activity from "pages/Activity";
 import MyActivities from "pages/MyActivities";
 import MyActivityDetail from "pages/MyActivities/detail";
+import CreateActivity from "pages/MyActivities/create";
 import PlaceholderPic from "./assets/images/bg-reset-cover.jpeg"; // TESTING
 
 export default function App() {
@@ -225,6 +226,10 @@ export default function App() {
               />
             );
           })}
+
+          <Route path="/my-activities/create" element={<CreateActivity />} />
+
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     );

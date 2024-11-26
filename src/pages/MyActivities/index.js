@@ -11,21 +11,27 @@ import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import FolderIcon from "@mui/icons-material/Folder";
 import EditIcon from "@mui/icons-material/Edit";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { Tooltip } from "@mui/material";
 
 const Demo = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
 export default function MyActivities({ activities }) {
-  const [dense, setDense] = React.useState(false);
-
   return (
     <div className="flex flex-col justify-center items-center mb-10">
-      <h1 className="font-extrabold text-sgu-blue text-5xl pt-10 pb-20">My Activities</h1>
+      <h1 className="font-extrabold text-sgu-blue text-5xl pt-10 pb-10">My Activities</h1>
+
+      <Tooltip title="Create activity">
+        <IconButton edge="end" aria-label="edit" component={Link} to={`/my-activities/create`}>
+          <AddCircleIcon />
+        </IconButton>
+      </Tooltip>
 
       <Grid item xs={12} md={6} sx={{ width: "75%" }}>
         <Demo>
-          <List dense={dense}>
+          <List dense="false">
             {activities.map((activity) => (
               <ListItem
                 key={activity.id}
