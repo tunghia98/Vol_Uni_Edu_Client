@@ -117,6 +117,8 @@ export default function Activity(props) {
               <label className="mt-5">Amount</label>
               <input
                 type="number"
+                min="0"
+                step="0.01"
                 className="border border-sgu-blue rounded-lg p-2"
                 placeholder="Amount"
               />
