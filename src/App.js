@@ -60,6 +60,7 @@ import Activity from "pages/Activity";
 import MyActivities from "pages/MyActivities";
 import MyActivityDetail from "pages/MyActivities/detail";
 import CreateActivity from "pages/MyActivities/create";
+import MyDonations from "pages/MyDonations";
 import PlaceholderPic from "./assets/images/bg-reset-cover.jpeg"; // TESTING
 
 export default function App() {
@@ -203,6 +204,7 @@ export default function App() {
         <Route path="/" element={<HomeLayout />}>
           <Route path="/" element={<HomePage />} />
 
+          <Route path="/my-donations" element={<MyDonations />} />
           {/* PASS PROPS HERE */}
           <Route path="/all-activities" element={<Activities activities={activities} />} />
 
