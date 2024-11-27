@@ -1,13 +1,13 @@
+/* eslint-disable react/prop-types */
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 import { Outlet } from "react-router-dom";
 
-export default function () {
+export default function HomeLayout({ auth }) {
   return (
     <>
-      {/* NEED TO TAKE AUTH STATE OUTSIDE */}
-      <Header />
+      <Header auth={auth} />
 
       <Outlet />
 

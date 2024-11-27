@@ -201,7 +201,7 @@ export default function App() {
   const getHomeRoutes = () => {
     return (
       <Routes>
-        <Route path="/" element={<HomeLayout />}>
+        <Route path="/" element={<HomeLayout auth={auth} />}>
           <Route path="/" element={<HomePage />} />
 
           <Route path="/my-donations" element={<MyDonations />} />

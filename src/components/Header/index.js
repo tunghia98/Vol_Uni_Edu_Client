@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -15,8 +16,7 @@ import Menu from "@mui/material/Menu";
 
 import { Link } from "react-router-dom";
 
-export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
+export default function MenuAppBar({ auth }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleChange = (event) => {
@@ -75,7 +75,7 @@ export default function MenuAppBar() {
           >
             ALL ACTIVITIES
           </Typography>
-          {auth && (
+          {auth === "user" && (
             <div>
               <IconButton
                 size="large"
