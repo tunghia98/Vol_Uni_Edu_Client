@@ -106,6 +106,9 @@ export default function MenuAppBar() {
                 <MenuItem onClick={handleClose} component={Link} to="/my-activities">
                   My activities
                 </MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/my-donations">
+                  My donations
+                </MenuItem>
                 <MenuItem onClick={handleClose}>Log out</MenuItem>
               </Menu>
             </div>
